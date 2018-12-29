@@ -21,8 +21,13 @@ def send_message(message):
 def send_message(message):
     user_murkup = telebot.types.ReplyKeyboardMarkup(True, False)
     user_murkup.row('/start', '/weather', '/time')
-    bot.send_message(message.chat.id, '... ', reply_markup=user_murkup)
+    bot.send_message(message.chat.id, 'Выберите действие ...', reply_markup=user_murkup)
 
+@bot.message_handler(commands=['stop'])
+def back(message):
+    user_murkup = telebot.types.ReplyKeyboardMarkup(True, False)
+    user_murkup.row('/start', '/weather', '/time')
+    bot.send_message(message.chat.id,"Выберите действие ...", reply_markup=user_murkup)
 
 @bot.message_handler(commands=['weather'])
 def send_message(message):
@@ -47,10 +52,6 @@ def gw(message):
         bot.send_message(message.chat.id, get_weather.get_weather(get_weather.get_html('https://yandex.ru/pogoda/{0}/'.format(cities[message.text]))))
         # print('https://yandex.ru/pogoda/{0}/'.format(cities[message.text]))
 
-@bot.message_handler(commands=['stop'])
-def back(message):
-    hide_markup = telebot.types.ReplyKeyboardRemove(selective=False)
-    bot.send_message(message.chat.id, "...",reply_markup=hide_markup)
 
 
 bot.polling(none_stop=True, interval=0)
