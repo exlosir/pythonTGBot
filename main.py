@@ -8,7 +8,7 @@ proxy = 'socks5://login:pass@140.82.20.93:1080'
 Ukraine_proxy = 'socks5://login:pass@80.252.241.107:1080'
 
 bot = telebot.TeleBot("674981466:AAEp_Xcm0l0iRuSQtWfZr3EieLW3Sf-Yeb0")
-apihelper.proxy = {'https': Ukraine_proxy}
+# apihelper.proxy = {'https': Ukraine_proxy}
 
 
 @bot.message_handler(commands=['time'])
